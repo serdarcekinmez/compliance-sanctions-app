@@ -119,7 +119,9 @@ backend/
 ├── utils.py                  # Generic helpers for image/data processing
 ├── models.py                 # Pydantic schemas for request/response validation
 └── requirements.txt          # Pin Python dependencies for reproducibility
+```
 
+---
 
 ## 🚀 Getting Started – Quick Setup
 
@@ -127,12 +129,12 @@ backend/
 ```bash
 git clone https://github.com/serdarcekinmez/compliance-sanctions-app.git
 cd compliance-sanctions-app
-2. Environment Variables
-Create a .env file or export environment variables:
+```
 
-bash
-Copy
-Edit
+### 2. Environment Variables
+Create a `.env` file or export environment variables:
+
+```bash
 # PostgreSQL connection (adjust values accordingly)
 export POSTGRES_HOST=localhost
 export POSTGRES_DB=kyc_demo
@@ -141,12 +143,12 @@ export POSTGRES_PASSWORD=kyc_pass
 
 # Ollama LLM (free local model)
 export OLLAMA_BASE_URL="http://localhost:11434"
-3. Start PostgreSQL
+```
+
+### 3. Start PostgreSQL
 Ensure a PostgreSQL (v13+) instance is running and reachable:
 
-bash
-Copy
-Edit
+```bash
 docker run -d \
   --name kyc-postgres \
   -e POSTGRES_USER="$POSTGRES_USER" \
@@ -154,10 +156,10 @@ docker run -d \
   -e POSTGRES_DB="$POSTGRES_DB" \
   -p 5432:5432 \
   postgres:13
-4. Backend Setup
-bash
-Copy
-Edit
+```
+
+### 4. Backend Setup
+```bash
 cd backend
 python3 -m venv .venv
 source .venv/bin/activate
@@ -165,120 +167,119 @@ pip install -r requirements.txt
 
 # Start backend using Python (due to EasyOCR dependencies)
 python main.py
-Note:
-You may normally use uvicorn main:app --reload, but EasyOCR can conflict with Uvicorn. Using python main.py ensures smoother startup.
+```
 
-API docs available at http://localhost:8000/docs
+**Note:** You may normally use `uvicorn main:app --reload`, but EasyOCR can conflict with Uvicorn. Using `python main.py` ensures smoother startup.
 
-Health check at http://localhost:8000
+- API docs available at http://localhost:8000/docs
+- Health check at http://localhost:8000
 
-5. Frontend Setup (Create React App)
-bash
-Copy
-Edit
+### 5. Frontend Setup (Create React App)
+```bash
 cd ../frontend
 npm install
 npm start
+```
+
 Frontend runs at http://localhost:3000.
 
-CRA’s Webpack Dev Server will proxy API calls to http://localhost:8000 if you set "proxy": "http://localhost:8000" in frontend/package.json.
+CRA's Webpack Dev Server will proxy API calls to http://localhost:8000 if you set `"proxy": "http://localhost:8000"` in `frontend/package.json`.
 
-🌐 Download Sanctions Dataset (Important for First Run)
-bash
-Copy
-Edit
+---
+
+## 🌐 Download Sanctions Dataset (Important for First Run)
+
+```bash
 # Download OpenSanctions dataset (~500MB)
 wget -O backend/Open_sanctions_target_nested_json_dataset \
   https://data.opensanctions.org/datasets/latest/default/targets.nested.json
-Place the downloaded file in backend/ before launching the server so that /verify_identity searches use local data.
+```
 
-📋 API Reference
-🔹 Sanctions Screening & Identity Verification
-POST /verify_identity
+Place the downloaded file in `backend/` before launching the server so that `/verify_identity` searches use local data.
 
-Request Body:
+---
 
-jsonc
-Copy
-Edit
+## 📋 API Reference
+
+### 🔹 Sanctions Screening & Identity Verification
+
+#### POST /verify_identity
+
+**Request Body:**
+```json
 {
   "full_name": "John Doe",
   "date_of_birth": "1980-01-01"
 }
-Response: List of sanctions matches with fuzzy and phonetic scores.
+```
 
-Use Case: Validate if a customer appears on any watchlist.
+**Response:** List of sanctions matches with fuzzy and phonetic scores.
 
-🔹 KYC Registration & Document Handling
-POST /save_registration
+**Use Case:** Validate if a customer appears on any watchlist.
 
-Request Body:
+### 🔹 KYC Registration & Document Handling
 
-jsonc
-Copy
-Edit
+#### POST /save_registration
+
+**Request Body:**
+```json
 {
   "customer_data": { /* fields from RegistrationForm */ },
   "uploaded_documents": [ /* base64 URLs or form-data */ ]
 }
-Response:
+```
 
-json
-Copy
-Edit
+**Response:**
+```json
 {
   "status": "success",
   "registration_id": 1234
 }
-Use Case: Store KYC form data, link uploaded docs, generate a database record.
+```
 
-POST /generate_pdf
+**Use Case:** Store KYC form data, link uploaded docs, generate a database record.
 
-Request Body:
+#### POST /generate_pdf
 
-jsonc
-Copy
-Edit
+**Request Body:**
+```json
 {
   "registration_id": 1234,
   "screenshots": [ /* data URL strings for form sections */ ]
 }
-Response: 200 OK with PDF binary (application/pdf).
+```
 
-Use Case: Produce a downloadable, audit-ready PDF combining KYC data, screenshots, and uploaded documents.
+**Response:** 200 OK with PDF binary (application/pdf).
 
-🔹 OCR & AI-Powered Interpretation
-POST /extract_identity_info
+**Use Case:** Produce a downloadable, audit-ready PDF combining KYC data, screenshots, and uploaded documents.
 
-Request Body:
+### 🔹 OCR & AI-Powered Interpretation
 
-jsonc
-Copy
-Edit
-{ "file": <multipart-file> }
-Response:
+#### POST /extract_identity_info
 
-json
-Copy
-Edit
+**Request Body:**
+```json
+{ "file": "<multipart-file>" }
+```
+
+**Response:**
+```json
 {
   "extracted_text": "Full OCR text from document image"
 }
-Use Case: Raw OCR text extraction (no AI inference).
+```
 
-POST /ocr_and_interpret
+**Use Case:** Raw OCR text extraction (no AI inference).
 
-Request Body:
+#### POST /ocr_and_interpret
 
-jsonc
-Copy
-Edit
-{ "file": <multipart-file> }
-Response:
+**Request Body:**
+```json
+{ "file": "<multipart-file>" }
+```
 
-json
-Copy
-Edit
+**Response:**
+```json
 {
   "structured_identity": {
     "full_name": "John Doe",
@@ -286,171 +287,172 @@ Edit
     /* additional fields */
   }
 }
-Use Case: Run OCR then a free local LLM (Ollama/Mistral) to return structured JSON fields (name, DOB, address).
+```
 
-POST /chat_with_ai
+**Use Case:** Run OCR then a free local LLM (Ollama/Mistral) to return structured JSON fields (name, DOB, address).
 
-Request Body:
+#### POST /chat_with_ai
 
-jsonc
-Copy
-Edit
+**Request Body:**
+```json
 {
   "message": "Where can I find PRADO details for Italian passport?"
 }
-Response:
+```
 
-json
-Copy
-Edit
+**Response:**
+```json
 {
   "reply": "You can check the PRADO page at https:// ... based on context ..."
 }
-Use Case: Free local LLM-powered conversational assistant for compliance practitioners and KYC agents.
+```
 
-🔹 PRADO Integration
-POST /prepare_prado_url
+**Use Case:** Free local LLM-powered conversational assistant for compliance practitioners and KYC agents.
 
-Request Body:
+### 🔹 PRADO Integration
 
-jsonc
-Copy
-Edit
+#### POST /prepare_prado_url
+
+**Request Body:**
+```json
 { "country_code": "IT", "document_type": "PASSPORT" }
-Response:
+```
 
-json
-Copy
-Edit
+**Response:**
+```json
 {
   "prado_url": "https://prado.europa.eu/..."
 }
-Use Case: Quickly build a link to the official EU PRADO portal for a given country/document type combination.
+```
 
-🗃️ Database & Alembic Migrations
-Define / Modify Models
-Edit backend/db_models.py with new columns or tables.
+**Use Case:** Quickly build a link to the official EU PRADO portal for a given country/document type combination.
 
-Autogenerate Revision
+---
 
-bash
-Copy
-Edit
+## 🗃️ Database & Alembic Migrations
+
+### Define / Modify Models
+Edit `backend/db_models.py` with new columns or tables.
+
+### Autogenerate Revision
+```bash
 cd backend
 alembic revision --autogenerate -m "Add email column to CustomerRegistration"
-Review Migration Script
-Located in backend/migrations/versions/XXXX_create_customer_registrations_table.py. Ensure upgrade() and downgrade() reflect intended changes.
+```
 
-Apply Migration
+### Review Migration Script
+Located in `backend/migrations/versions/XXXX_create_customer_registrations_table.py`. Ensure `upgrade()` and `downgrade()` reflect intended changes.
 
-bash
-Copy
-Edit
+### Apply Migration
+```bash
 alembic upgrade head
-(Optional) Create Tables Manually
+```
 
-bash
-Copy
-Edit
+### (Optional) Create Tables Manually
+```bash
 python create_tables.py
-🧪 Testing & Quality Assurance
-Backend Tests (pytest)
-bash
-Copy
-Edit
+```
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+### Backend Tests (pytest)
+```bash
 cd backend
 pytest -q --disable-warnings --maxfail=1
-Unit tests cover API endpoints, OCR logic, matching algorithms, and PDF generation.
+```
 
-Aim for coverage ≥ 80%.
+Unit tests cover API endpoints, OCR logic, matching algorithms, and PDF generation. Aim for coverage ≥ 80%.
 
-Frontend Tests (Jest & React Testing Library)
-bash
-Copy
-Edit
+### Frontend Tests (Jest & React Testing Library)
+```bash
 cd frontend
 npm test
-Component tests verify form validation, API service calls, and state management.
+```
 
-Snapshot tests for key React components.
+Component tests verify form validation, API service calls, and state management. Snapshot tests for key React components.
 
-⚠️ Troubleshooting & Known Issues
-OCR & Backend Startup
+---
+
+## ⚠️ Troubleshooting & Known Issues
+
+### OCR & Backend Startup
 EasyOCR may conflict with Uvicorn. Use:
-
-bash
-Copy
-Edit
+```bash
 python main.py
-instead of uvicorn main:app --reload.
+```
+instead of `uvicorn main:app --reload`.
 
-System Dependencies:
-
-bash
-Copy
-Edit
+**System Dependencies:**
+```bash
 sudo apt-get update && sudo apt-get install -y libgl1-mesa-glx libglib2.0-0
-OCR Alternative Recommendation
+```
+
+### OCR Alternative Recommendation
 For higher accuracy, you can try PaddleOCR:
-
-bash
-Copy
-Edit
+```bash
 pip install paddlepaddle paddleocr
-Note: Can introduce pandas/compatibility issues.
+```
+**Note:** Can introduce pandas/compatibility issues.
 
-Database Connection Issues
+### Database Connection Issues
 Verify PostgreSQL container is running:
-
-bash
-Copy
-Edit
+```bash
 docker ps | grep kyc-postgres
-Ensure .env matches your container credentials exactly.
+```
+Ensure `.env` matches your container credentials exactly.
 
-CORS / Frontend Proxy
-Ensure "proxy": "http://localhost:8000" is set in frontend/package.json.
+### CORS / Frontend Proxy
+Ensure `"proxy": "http://localhost:8000"` is set in `frontend/package.json`.
 
 Restart frontend after any changes:
-
-bash
-Copy
-Edit
+```bash
 npm start
-Port Conflicts
+```
+
+### Port Conflicts
 Adjust backend port if 8000 is in use:
-
-bash
-Copy
-Edit
+```bash
 uvicorn main:app --reload --port 8001
-Update "proxy" in frontend/package.json accordingly.
+```
+Update `"proxy"` in `frontend/package.json` accordingly.
 
-📚 Detailed Architecture & Dependency Maps
-Frontend Dependency Map: docs/frontendRolesTable.xlsx
+---
 
-Backend Dependency Map: docs/backend_inventory_final.xlsx
+## 📚 Detailed Architecture & Dependency Maps
 
-Project Directory Tree (PDF): docs/project_tree.pdf
+- **Frontend Dependency Map:** `docs/frontendRolesTable.xlsx`
+- **Backend Dependency Map:** `docs/backend_inventory_final.xlsx`  
+- **Project Directory Tree (PDF):** `docs/project_tree.pdf`
 
 Download or preview these for a deeper understanding of module relationships, import chains, and file roles.
 
-📞 Contact & Collaboration
+---
+
+## 📞 Contact & Collaboration
+
 Interested in this project or compliance technology?
 
-Email: serdar.cekinmez@gmail.com
+**Email:** serdar.cekinmez@gmail.com
 
-GitHub: github.com/serdarcekinmez
+**GitHub:** github.com/serdarcekinmez
 
-LinkedIn: linkedin.com/in/serdarcekinmez
+**LinkedIn:** linkedin.com/in/serdarcekinmez
 
-🤝 Commercial Use & Partnerships
+---
+
+## 🤝 Commercial Use & Partnerships
+
 For commercial licensing or enterprise features, please contact via email.
 
-❤️ Credits & License
-License: MIT
+---
 
-Acknowledgments:
+## ❤️ Credits & License
+
+**License:** MIT
+
+**Acknowledgments:**
 
 Built with ❤️ using FastAPI, React, and ReportLab.
 
@@ -458,4 +460,4 @@ OCR powered by EasyOCR.
 
 Free local LLM assistance via Ollama.
 
-Special thanks to the OpenSanctions team for providing comprehensive sanctions datasets that enable this demo’s screening capabilities.
+Special thanks to the OpenSanctions team for providing comprehensive sanctions datasets that enable this demo's screening capabilities.
