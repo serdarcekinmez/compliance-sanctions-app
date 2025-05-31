@@ -488,3 +488,15 @@ We maintain full dependency spreadsheets and a directory‐tree diagram in the *
 
 Feel free to download or preview these to get a deeper understanding of module relationships, import chains, and file roles.
 ---
+## 📞 Contact & Collaboration
+
+**Interested in this project or compliance technology?**
+
+- **Email**: serdar.cekinmez@gmail.com
+- **GitHub**: https://github.com/serdarcekinmez
+- **LinkedIn**: www.linkedin.com/in/serdarcekinmez
+
+### Commercial Use & Partnerships
+For commercial licensing, enterprise features, or collaboration opportunities, please reach out via email.
+
+---
