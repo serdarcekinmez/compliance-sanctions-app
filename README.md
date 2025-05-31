@@ -1,4 +1,8 @@
 
+
+
+
+
 # 📑 Compliance Demo 2.0.1 – Full-Stack KYC & Sanctions Screening App
 
 **Compliance Demo 2.0.1** is a reference implementation demonstrating a modern **Know Your Customer (KYC)** and **sanctions screening** solution. It integrates:
