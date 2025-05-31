@@ -1,0 +1,434 @@
+
+
+
+
+
+/* DocumentUploader.module.css */
+/* Styles for document uploader component with OCR functionality */
+
+.uploaderContainer {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Upload section styles */
+.uploadSection {
+  border: 2px dashed #eaeaea;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.uploadSection:hover {
+  border-color: #3498db;
+  background-color: #f5f9ff;
+}
+
+.uploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
+  font-weight: 500;
+  color: #444;
+}
+
+.uploadIcon {
+  margin-bottom: 12px;
+  color: #3498db;
+}
+
+.fileInput {
+  display: none;
+}
+
+.supportedFormats {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* Document preview section */
+.uploadPreviewsContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.previewsTitle {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.uploadPreviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Increased from 120px */
+  gap: 15px; /* Increased from 10px */
+  margin-bottom: 10px;
+}
+
+/* Document thumbnail styling - FIXED to prevent cropping */
+.docThumbnail {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 200px; /* Increased from 150px */
+  border: 2px solid #eaeaea;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #f9f9f9; /* Added background */
+  display: flex; /* Added flex to center content */
+  align-items: center;
+  justify-content: center;
+}
+
+.docThumbnail:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: #3498db;
+}
+
+.docThumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Changed from cover to contain - THIS IS THE KEY FIX */
+  object-position: center;
+  padding: 8px; /* Added padding to prevent edge cropping */
+  background-color: white; /* White background for the image */
+}
+
+/* Selected document styling */
+.selectedDoc {
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+}
+
+.selectedOverlay {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(52, 152, 219, 0.7);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.docIndex {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.removeButton {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(244, 67, 54, 0.8);
+  color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  z-index: 3;
+}
+
+.removeButton:hover {
+  background-color: rgba(244, 67, 54, 1);
+}
+
+/* Screenshot specific styling - FIXED aspect ratio */
+.screenshotContainer {
+  grid-column: 1 / -1; /* Take full width of grid */
+  margin-bottom: 20px;
+}
+
+.screenshotThumbnail {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 250px; /* Reduced from 300px for better proportion */
+  max-width: 800px; /* Limit maximum width */
+  width: 100%;
+  margin: 0 auto; /* Center it */
+  border: 2px solid #3498db;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9; /* Light background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screenshotThumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevents cropping and maintains aspect ratio */
+  object-position: center;
+  padding: 10px; /* Add padding around the screenshot */
+  background-color: white;
+}
+
+.screenshotImage {
+  object-fit: contain !important;
+  padding: 5px;
+}
+
+.screenshotLabel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 10px;
+  padding: 4px;
+  text-align: center;
+}
+
+.uploadCount {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.selectedLabel {
+  color: #3498db;
+  font-weight: 500;
+}
+
+/* OCR controls section */
+.ocrControls, .ocrSection {
+  background-color: #f5f9ff;
+  border-radius: 6px;
+  padding: 15px;
+  margin: 20px 0;
+  border: 1px solid #e1ebfa;
+}
+
+.selectionModeToggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.selectionModeToggle span {
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.modeButton {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  margin-right: 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modeButton:hover {
+  background-color: #e8e8e8;
+}
+
+.activeMode {
+  background-color: #3498db;
+  color: white;
+  border-color: #2980b9;
+}
+
+.activeMode:hover {
+  background-color: #2980b9;
+}
+
+.ocrInfo {
+  background-color: rgba(232, 244, 253, 0.6);
+  border-left: 3px solid #3498db;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #555;
+}
+
+.ocrButtonsContainer, .ocrButtonWrapper, .ocrSimpleControls {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ocrSimpleControls {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.ocrButton, .aiButton, .ocrMinimalButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ocrMinimalButton {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ocrMinimalButton:hover {
+  background-color: #2980b9;
+}
+
+.ocrMinimalButton:disabled, .ocrButton:disabled, .aiButton:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.ocrButton svg, .aiButton svg {
+  margin-right: 4px;
+}
+
+/* OCR loading spinner */
+.loadingSpinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* OCR status messages */
+.ocrStatus, .integratedOcrStatus {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.successStatus {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+.warningStatus {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.errorStatus {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.infoStatus {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border-left: 3px solid #1565c0;
+}
+
+/* AI Assistant container */
+.aiAssistantContainer {
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-left: 4px solid #3498db;
+  background-color: white;
+}
+
+.aiAssistantHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.aiAssistantHeader h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #3498db;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assistantCloseButton {
+  background-color: transparent;
+  border: none;
+  color: #95a5a6;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.assistantCloseButton:hover {
+  color: #e74c3c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .uploadPreviews {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  
+  .docThumbnail {
+    height: 160px;
+  }
+  
+  .screenshotThumbnail {
+    height: 200px;
+  }
+}

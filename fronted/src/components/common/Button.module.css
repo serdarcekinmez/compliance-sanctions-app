@@ -1,0 +1,117 @@
+
+
+
+/* components/common/Button.module.css */
+/* Styles for the reusable button component */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--radius, 6px);
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    text-align: center;
+    gap: 8px;
+  }
+  
+  .button:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button:active {
+    transform: translateY(0);
+  }
+  
+  .button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.25);
+  }
+  
+  /* Button variants */
+  .primary {
+    background-color: var(--primary-color, #1976d2);
+    color: white;
+  }
+  
+  .primary:hover {
+    background-color: var(--primary-dark, #0d47a1);
+  }
+  
+  .secondary {
+    background-color: var(--secondary-color, #757575);
+    color: white;
+  }
+  
+  .secondary:hover {
+    background-color: var(--secondary-dark, #424242);
+  }
+  
+  .danger {
+    background-color: var(--danger-color, #f44336);
+    color: white;
+  }
+  
+  .danger:hover {
+    background-color: var(--danger-dark, #c62828);
+  }
+  
+  .success {
+    background-color: var(--success-color, #4caf50);
+    color: white;
+  }
+  
+  .success:hover {
+    background-color: var(--success-dark, #2e7d32);
+  }
+  
+  .warning {
+    background-color: var(--warning-color, #ff9800);
+    color: var(--text-primary, #212121);
+  }
+  
+  .warning:hover {
+    background-color: var(--warning-dark, #ef6c00);
+  }
+  
+  /* Disabled state for all button types */
+  .disabled {
+    background-color: var(--gray-300, #e0e0e0) !important;
+    color: var(--gray-600, #757575) !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Button sizes */
+  .small {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+  
+  .medium {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+  
+  
+  .large {
+    padding: 12px 24px;
+    font-size: 18px;
+  }
+  
+  /* Full width option */
+  .fullWidth {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .button {
+      padding: 10px 16px; /* Slightly larger touch target on mobile */
+    }
+  }

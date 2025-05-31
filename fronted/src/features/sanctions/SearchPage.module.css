@@ -1,0 +1,185 @@
+
+
+
+
+
+/* features/sanctions/SearchPage.module.css */
+/* Modern White to Ocean Blue Gradient with Seamless Borders */
+
+.searchPageContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffffff 0%, #e6f3ff 30%, #b3daff 60%, #0066cc 100%);
+  position: relative;
+}
+
+.searchPageContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,1000 0,0 1000,0 1000,800"/><polygon fill="%230066cc05" points="0,1000 1000,1000 1000,200"/></svg>');
+  pointer-events: none;
+}
+
+.pageHeader {
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding-top: 60px;
+}
+
+.pageHeader h1 {
+  font-size: 42px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+}
+
+.headerDescription {
+  font-size: 18px;
+  color: #004499;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.pageContent {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.searchPanel {
+  width: 100%;
+  max-width: 700px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 
+    0 25px 50px rgba(0, 102, 204, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(0, 102, 204, 0.1);
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.searchPanel:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 35px 70px rgba(0, 102, 204, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.searchPanel h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0066cc;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.searchPanel h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: #0066cc;
+  border-radius: 2px;
+}
+
+/* Debug panel - only shown in development */
+.debugPanel {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.debugPanel h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.debugButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.debugButton {
+  padding: 8px 12px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.debugButton:hover {
+  background-color: #004499;
+}
+
+.debugInfo {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .searchPageContainer {
+    padding: 15px;
+  }
+  
+  .searchPanel {
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 
+      0 20px 40px rgba(0, 102, 204, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+  
+  .pageHeader {
+    margin-bottom: 30px;
+    padding-top: 40px;
+  }
+  
+  .pageHeader h1 {
+    font-size: 32px;
+  }
+  
+  .headerDescription {
+    font-size: 16px;
+  }
+  
+  .searchPanel h2 {
+    font-size: 20px;
+  }
+}

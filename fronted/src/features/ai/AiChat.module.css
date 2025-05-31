@@ -1,0 +1,214 @@
+/* features/ai/AiChat.module.css */
+/* Styles for the AI Chat component */
+
+.chatContainer {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    max-height: 50vh;
+  }
+  
+  .chatHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--primary-color, #1976d2);
+    color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .chatHeader h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .clearButton {
+    background: none;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .clearButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .messagesContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .message {
+    display: flex;
+    gap: 10px;
+    max-width: 85%;
+    margin-bottom: 8px;
+  }
+  
+  .user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+  
+  .ai {
+    align-self: flex-start;
+  }
+  
+  .system {
+    align-self: center;
+    max-width: 90%;
+    background-color: var(--gray-light, #f5f5f5);
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 13px;
+    color: var(--text-secondary, #616161);
+    margin: 8px 0;
+  }
+  
+  .userIcon, .aiIcon, .systemIcon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .userIcon {
+    background-color: var(--primary-color, #1976d2);
+    color: white;
+  }
+  
+  .aiIcon {
+    background-color: var(--success-color, #4caf50);
+    color: white;
+  }
+  
+  .systemIcon {
+    background-color: var(--warning-color, #ff9800);
+    color: white;
+  }
+  
+  .messageContent {
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .user .messageContent {
+    background-color: var(--primary-light, #bbdefb);
+    color: var(--text-primary, #212121);
+    border-bottom-right-radius: 4px;
+  }
+  
+  .ai .messageContent {
+    background-color: var(--gray-light, #f5f5f5);
+    color: var(--text-primary, #212121);
+    border-bottom-left-radius: 4px;
+  }
+  
+  .inputForm {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid var(--gray-medium, #e0e0e0);
+    background-color: white;
+  }
+  
+  .chatInput {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--gray-medium, #e0e0e0);
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .chatInput:focus {
+    border-color: var(--primary-color, #1976d2);
+  }
+  
+  .sendButton {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color, #1976d2);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.2s;
+  }
+  
+  .sendButton:hover {
+    background-color: var(--primary-dark, #0d47a1);
+  }
+  
+  .sendButton:disabled {
+    background-color: var(--gray-medium, #e0e0e0);
+    cursor: not-allowed;
+  }
+  
+  .pradoSuggestion {
+  background: #f0f6ff;
+  color: #003366;
+  padding: 8px 12px;
+  margin: 10px 0;
+  border-left: 4px solid #3b82f6;
+  border-radius: 3px;
+  font-size: 0.98em;
+}
+
+
+
+  .loadingSpinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .chatContainer {
+      height: 350px;
+    }
+    
+    .message {
+      max-width: 90%;
+    }
+    
+    .messageContent {
+      font-size: 13px;
+    }
+  }

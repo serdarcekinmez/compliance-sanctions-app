@@ -1,0 +1,243 @@
+
+
+
+
+/* MatchItem.module.css */
+/* Fixed styles for horizontal tabular layout with fixed column widths */
+
+.matchItem {
+  margin-bottom: 2px; /* Reduced to create tighter rows */
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Main row styling for horizontal layout */
+.matchRow {
+  display: table; /* Change to table for better alignment */
+  width: 100%;
+  table-layout: fixed; /* Ensures equal column width distribution */
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+}
+
+.matchRow:hover {
+  background-color: #f8f9fa;
+}
+
+.matchRow.expanded {
+  background-color: #f5f9ff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Column styling - changed to table-cell for better alignment */
+.matchCol {
+  display: table-cell;
+  padding: 14px 10px;
+  min-width: 0; /* Enables text truncation */
+  vertical-align: middle;
+}
+
+/* Label and value styling */
+.colLabel {
+  display: none; /* Hide in desktop view, shown in mobile */
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.colValue {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  display: block; /* Ensuring the element uses full width for truncation */
+}
+
+.score {
+  font-weight: 600;
+  color: #0066cc;
+}
+
+/* Expand toggle icon */
+.expandToggle {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 10px;
+  width: 24px;
+  transition: transform 0.2s;
+  text-align: center;
+}
+
+.expandToggle svg {
+  transition: transform 0.2s;
+}
+
+.expandToggle svg.rotated {
+  transform: rotate(180deg);
+}
+
+/* Existing styles - Modified to work with the new layout */
+.detailsContainer {
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e8e8e8;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.detailsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detailsSection {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0; /* Reset margin since we're using gap */
+}
+
+.detailsSection h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailsLabel {
+  font-size: 13px;
+  color: #666;
+}
+
+.detailsValue {
+  background-color: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+/* Lists for addresses and aliases */
+.addressList, .aliasList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addressList li, .aliasList li {
+  background-color: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+}
+
+/* Additional info styling */
+.additionalInfo {
+  background-color: #f5f5f5;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* JSON section styling */
+.jsonSection {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #eaeaea;
+}
+
+.jsonButton {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.jsonButton:hover {
+  background-color: #e0e0e0;
+}
+
+.jsonContainer {
+  margin-top: 12px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.jsonCode {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .matchRow {
+    display: block; /* Switch to block on mobile */
+  }
+  
+  .matchCol {
+    display: block;
+    width: 100% !important; /* Override any inline width */
+    padding: 8px 12px;
+  }
+  
+  .colLabel {
+    display: block;
+  }
+  
+  .expandToggle {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: auto;
+  }
+  
+  .detailsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

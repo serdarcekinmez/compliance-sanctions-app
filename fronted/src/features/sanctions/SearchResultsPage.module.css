@@ -1,0 +1,303 @@
+
+
+
+
+
+/* features/sanctions/SearchResultsPage.module.css */
+/* Final version with fixed table structure for proper column alignment */
+
+.searchResultsPage {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative; /* For positioning the floating screenshot button */
+}
+
+.pageHeader {
+  margin-bottom: 24px;
+}
+
+.pageHeader h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+}
+
+.searchInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #f8f9fa;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.customerInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.nameInfo, .timestamp {
+  font-size: 14px;
+  color: #555;
+}
+
+.pageContent {
+  margin-bottom: 120px; /* Make room for fixed action buttons */
+}
+
+.resultsContainer {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.resultsHeader {
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.matchCount {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Table Header Styles - Fixed to use table display */
+.tableHeader {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  background-color: #f0f0f0;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.headerCol {
+  display: table-cell;
+  padding: 12px 10px;
+  vertical-align: middle;
+}
+
+.headerExpand {
+  display: table-cell;
+  width: 24px;
+  vertical-align: middle;
+  padding: 0 10px;
+}
+
+/* Container for match items */
+.matchesList {
+  display: flex;
+  flex-direction: column;
+}
+
+.noResultsMessage {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Floating Screenshot Button */
+.floatingScreenshotButton {
+  position: fixed;
+  bottom: 110px; /* Position above the decision buttons */
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000; /* Ensure it's above other elements */
+  font-weight: 600;
+}
+
+.floatingScreenshotButton:hover {
+  background-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.floatingScreenshotButton:active {
+  transform: translateY(0);
+}
+
+.floatingScreenshotButton svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.floatingScreenshotButton:disabled {
+  background-color: #bbdefb;
+  cursor: not-allowed;
+}
+
+.screenshotStatus {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.takingScreenshot {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.screenshotTaken {
+  background-color: #4caf50;
+  color: white;
+}
+
+.screenshotError {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #ffebee;
+  color: #d32f2f;
+  border-radius: 4px;
+  border: 1px solid #ffcdd2;
+  font-size: 14px;
+}
+
+/* Actions Container for Decision Buttons */
+.actionsContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 16px 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.screenshotMessage {
+  text-align: center;
+  color: #4caf50;
+  font-weight: 500;
+  margin-bottom: 12px;
+  padding: 8px;
+  background-color: #e8f5e9;
+  border-radius: 4px;
+}
+
+.successIcon {
+  display: inline-block;
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+/* Decision Buttons with Improved Spacing */
+.decisionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Increased spacing between buttons */
+  margin-bottom: 16px;
+}
+
+.decisionButton {
+  flex: 1;
+  max-width: 220px; /* Limit maximum width */
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.decisionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.decisionButton:active {
+  transform: translateY(0);
+}
+
+/* Different colors for each decision button */
+.noMatchButton {
+  background-color: #28a745; /* Green */
+}
+
+.notRelatedButton {
+  background-color: #17a2b8; /* Blue */
+}
+
+.proceedAnywayButton {
+  background-color: #ffc107; /* Yellow */
+  color: #212529;
+}
+
+.backButton {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #e9ecef;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tableHeader {
+    display: none; /* Hide header on mobile */
+  }
+  
+  .decisionButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .decisionButton {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .floatingScreenshotButton {
+    bottom: 170px; /* Position higher on mobile due to stacked buttons */
+    right: 20px;
+  }
+}

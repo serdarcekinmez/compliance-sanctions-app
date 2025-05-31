@@ -1,0 +1,173 @@
+
+
+
+/* features/registration/RegistrationPage.module.css */
+/* Styles for the main registration page */
+
+.registrationPageContainer {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .pageHeader {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--gray-medium, #e0e0e0);
+    position: relative;
+  }
+  
+  .pageHeader h1 {
+    color: var(--primary-dark, #0d47a1);
+    margin: 0 0 10px 0;
+    font-size: 28px;
+  }
+  
+  .sanctionsDecision {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  
+  .no_match {
+    background-color: var(--success-light, #e8f5e9);
+    color: var(--success-dark, #2e7d32);
+    border: 1px solid var(--success-color, #4caf50);
+  }
+  
+  .not_related {
+    background-color: var(--info-light, #e3f2fd);
+    color: var(--info-dark, #1565c0);
+    border: 1px solid var(--info-color, #2196f3);
+  }
+  
+  .proceed_anyway {
+    background-color: var(--warning-light, #fff3e0);
+    color: var(--warning-dark, #ef6c00);
+    border: 1px solid var(--warning-color, #ff9800);
+  }
+  
+  .pageContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .sanctionsSummary {
+    background-color: var(--gray-light, #f5f5f5);
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid var(--gray-medium, #e0e0e0);
+  }
+  
+  .summaryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .summaryHeader h3 {
+    margin: 0;
+    color: var(--text-primary, #212121);
+    font-size: 16px;
+  }
+  
+  .timestamp {
+    font-size: 12px;
+    color: var(--text-tertiary, #757575);
+    font-style: italic;
+  }
+  
+  .matchesSummary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .screenshotIndicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--success-color, #4caf50);
+    font-size: 13px;
+  }
+  
+  .contentGrid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 20px;
+  }
+  
+  .formSection {
+    width: 100%;
+  }
+  
+  .docsSection {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .successMessage {
+    background-color: var(--success-light, #e8f5e9);
+    border: 1px solid var(--success-color, #4caf50);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .successIcon {
+    color: var(--success-color, #4caf50);
+    width: 40px;
+    height: 40px;
+  }
+  
+  .successMessage h3 {
+    color: var(--success-dark, #2e7d32);
+    margin: 0;
+  }
+  
+  .successMessage p {
+    margin: 0;
+    color: var(--text-secondary, #616161);
+  }
+  
+  @media (max-width: 992px) {
+    .contentGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .registrationPageContainer {
+      padding: 0 10px;
+    }
+    
+    .pageHeader h1 {
+      font-size: 24px;
+    }
+    
+    .summaryHeader {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    
+    .matchesSummary {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
